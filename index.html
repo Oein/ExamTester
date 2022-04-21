@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input {
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <textarea placeholder="영어 원본을 입력 하세요 (enter 로 분류)" id="origin" onchange="re()" onkeydown="re()" onkeyup="re()"></textarea>
+    <p></p>
+    <textarea placeholder="영어 번역본을 입력 하세요 (enter 로 분류)" id="origin2" onchange="re()" onkeydown="re()" onkeyup="re()"></textarea>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <p style="margin-top: 10px;">&nbsp;</p>
+    <div id="yourIn">
+asd
+    </div>
+
+    <button onclick="check()">채점</button>
+
+    <script>
+        let origin = document.getElementById('origin');
+        let origin2 = document.getElementById('origin2');
+        let yourIn = document.getElementById('yourIn');
+        function re(){
+            yourIn.innerHTML = "";
+
+            let originText = origin.value.split('\n');
+            let originText2 = origin2.value.split('\n');
+
+            for(let i = 0; i < originText.length; i++){
+                let korean = originText2[i];
+                let newInput = document.createElement("input");
+                newInput.setAttribute("type", "text");
+                newInput.id = "input" + i.toString();
+                newInput.placeholder = originText2[i];
+                let p = document.createElement("p");
+                let p2 = document.createElement("p");
+                let right = document.createElement("div");
+                right.id = "right" + i.toString();
+                p.append(right)
+                p.append(i.toString() + " . " + korean);
+                p2.append(newInput);
+                yourIn.append(p);
+                yourIn.append(p2);
+            }
+        }
+
+        function check(){
+            let originText = origin.value.split('\n');
+            let originText2 = origin2.value.split('\n');
+
+            for(let i = 0; i < originText.length; i++){
+                let userInput = document.getElementById("input" + i.toString()).value;
+                let rightAns = originText[i];
+
+                userInput = userInput.replaceAll(" " , "").replaceAll("," , "").replaceAll("?" , "").replaceAll("." , "").replaceAll("'" , "").replaceAll("\"" , "")
+                rightAns = rightAns.replaceAll(" " , "").replaceAll("," , "").replaceAll("?" , "").replaceAll("." , "").replaceAll("'" , "").replaceAll("\"" , "")
+                if(userInput == rightAns){
+                    document.getElementById("right" + i.toString()).innerText = "정답 . ";
+                }else{
+                    document.getElementById("right" + i.toString()).innerText = "오답 Right Ans : " + originText[i];
+                }
+            }
+        }
+    </script>
+</body>
+</html>
