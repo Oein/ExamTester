@@ -20,17 +20,44 @@
         p {
             margin: 0px;
         }
+
+        textarea {
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        button {
+            border: none;
+            border-radius: 5px;
+            background-color: lightblue;
+            padding: 7px;
+            margin: 6px;
+            transition: .2s;
+        }
+
+        button:hover {
+            background-color: lightgreen;
+            margin: 3px;
+            padding: 10px;
+        }
+
+        select {
+            border-radius: 5px;
+            padding: 5px;
+            margin: 3px;
+        }
     </style>
+    
 </head>
 <body>
-    <textarea placeholder="영어 원본을 입력 하세요 (enter 로 분류)" id="origin" rows="13" cols="60" onchange="re()" onkeydown="re()" onkeyup="re()"></textarea>
+    <textarea placeholder="영어 원본을 입력 하세요. enter 로 분류합니다. (채점용)" id="origin" rows="13" cols="60"></textarea>
     <p></p>
-    <textarea placeholder="영어 번역본을 입력 하세요 (enter 로 분류)" id="origin2" rows="13" cols="60" onchange="re()" onkeydown="re()" onkeyup="re()"></textarea>
+    <textarea placeholder="영어 번역본을 입력 하세요. enter 로 분류합니다." id="origin2" rows="13" cols="60"></textarea>
     <p></p>
+    <button onclick="re()">사용자 입력을 적용</button>
     <select id="preT" onchange="preC()">
         <option>시험 데이터들이 로딩이 안되어 있습니다.</option>
     </select>
-    <p></p>
     <button onclick="load()">저장되있는 시험 데이터들 불러오기</button>
     <p style="margin-top: 10px;">&nbsp;</p>
     <p style="margin-top: 10px;">&nbsp;</p>
