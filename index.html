@@ -104,12 +104,11 @@
             return false;
         }
 
-        function load(){
+        async function load(){
             let preDoX = {};
             const url1 = 'https://raw.githubusercontent.com/oeiar/ExamTester/main/testData.json'
             const response = await fetch(url1);
             const data = await response.text();
-            console.log(data);
 
             preDoX = JSON.parse(data);
             preT.innerHTML = "";
