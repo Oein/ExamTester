@@ -104,6 +104,8 @@
             return false;
         }
 
+        let preDo = {};
+
         async function load(){
             let preDoX = {};
             const url1 = 'https://raw.githubusercontent.com/oeiar/ExamTester/main/testData.json'
@@ -115,7 +117,6 @@
 
             const ordered = {};
 
-            let preDo = {};
             Object.keys(preDoX).sort().forEach(function(key) {
                 preDo[key] = preDoX[key];
             });
