@@ -33,23 +33,45 @@
             padding: 7px;
             margin: 6px;
             transition: .2s;
+            padding-left: 10px;
+            padding-right: 10px;
         }
 
         button:hover {
             background-color: lightgreen;
             margin: 3px;
-            padding: 10px;
+            padding-left: 13px;
+            padding-right: 13px;
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
 
         select {
             border-radius: 5px;
-            padding: 5px;
+            border-color: lightblue;
+            border-width: 1px;
+            padding: 6px;
             margin: 3px;
+            transition: .2s;
+        }
+
+        select:hover {
+            border-color: lightgreen;
+            border-width: 3px;
+            padding: 4px;
+            border-radius: 6px;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: 400;
+            height:38px;
         }
     </style>
     
 </head>
 <body>
+    <p>프린트시 추천여백 , 9.5mm , 9.5mm , 9.5mm , 9.5mm</p>
     <textarea placeholder="영어 원본을 입력 하세요. enter 로 분류합니다. (채점용)" id="origin" rows="13" cols="60"></textarea>
     <p></p>
     <textarea placeholder="영어 번역본을 입력 하세요. enter 로 분류합니다." id="origin2" rows="13" cols="60"></textarea>
@@ -93,15 +115,24 @@
         let originText2 = [];
 
 
-        function printdiv(printdivname) {
-            var headstr = "<html><head><title>Booking Details</title></head><body>";
-            var footstr = "</body>";
-            var newstr = document.getElementById(printdivname).innerHTML;
-            var oldstr = document.body.innerHTML;
-            document.body.innerHTML = headstr+newstr+footstr;
-            window.print();
-            document.body.innerHTML = oldstr;
-            return false;
+        function printdiv(elem)
+        {
+            var mywindow = window.open('', 'PRINT', 'height=600,width=800');
+
+            let style = document.getElementsByTagName("style")[0];
+            mywindow.document.write('<html><head><title>' + document.title  + '</title><style>');
+            mywindow.document.write(style.innerHTML);
+            mywindow.document.write('</style></head><body >');
+            mywindow.document.write(document.getElementById(elem).innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
         }
 
         let preDo = {};
@@ -149,6 +180,8 @@
         function re(){
             yourIn.innerHTML = "";
 
+            origin = document.getElementById('origin');
+            origin2 = document.getElementById('origin2');
             originText = origin.value.split('\n');
             originText2 = origin2.value.split('\n');
 
@@ -163,7 +196,12 @@
                 let right = document.createElement("div");
                 right.id = "right" + i.toString();
                 p.append(right)
-                p.append((i + 1).toString() + " . " + korean);
+
+                let question = document.createElement("div");
+                question.className = "question";
+                question.innerText = (i + 1).toString() + " . " + korean;
+
+                p.append(question);
                 p2.append(newInput);
                 yourIn.append(p);
                 yourIn.append(p2);
