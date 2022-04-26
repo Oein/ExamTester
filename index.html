@@ -77,14 +77,6 @@
     <textarea placeholder="영어 원본을 입력 하세요. enter 로 분류합니다. (채점용)" id="origin" rows="13" cols="60"></textarea>
     <p></p>
     <textarea placeholder="영어 번역본을 입력 하세요. enter 로 분류합니다." id="origin2" rows="13" cols="60"></textarea>
-    <p></p>
-    <button onclick="re()">사용자 입력을 적용</button>
-    <button onclick="for(let i = 0;i < originText.length;i++){document.getElementById('right' + i.toString()).innerText = ''}">정답 가리기</button>
-    <p></p>
-    <select id="preT" onchange="preC()">
-        <option>시험 데이터들이 로딩이 안되어 있습니다.</option>
-    </select>
-    <button onclick="load()">저장되있는 시험 데이터들 불러오기</button>
     
     <p style="margin-top: 10px;">&nbsp;</p>
     <p style="margin-top: 10px;">&nbsp;</p>
@@ -105,12 +97,21 @@
     <p style="margin-top: 10px;">&nbsp;</p>
     <p style="margin-top: 10px;">&nbsp;</p>
     <p style="margin-top: 10px;">&nbsp;</p>
-    <div id="yourIn">
-    </div>
-
+    
+    <button onclick="re()">사용자 입력을 적용</button>
+    <button onclick="for(let i = 0;i < originText.length;i++){document.getElementById('right' + i.toString()).innerText = ''}">정답 가리기</button>
     <button onclick="printdiv('yourIn')">프린트</button>
     <button onclick="check()">체점</button>
-
+    <p></p>
+    <select id="preT" onchange="preC()">
+        <option>시험 데이터들이 로딩이 안되어 있습니다.</option>
+    </select>
+    <button onclick="load()">저장되있는 시험 데이터들 불러오기</button>
+    
+    <p style="margin-top: 10px;">&nbsp;</p>
+    
+    <div id="yourIn">
+    </div>
     <script>
         let origin = document.getElementById('origin');
         let origin2 = document.getElementById('origin2');
