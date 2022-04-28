@@ -120,6 +120,24 @@
         let originText = [];
         let originText2 = [];
 
+        function shuffleArray(array , array2) {
+          let curId = array.length;
+          // There remain elements to shuffle
+          while (0 !== curId) {
+            // Pick a remaining element
+            let randId = Math.floor(Math.random() * curId);
+            curId -= 1;
+            // Swap it with the current element.
+            let tmp = array[curId];
+            let tmp2 = array2[curId];
+            array[curId] = array[randId];
+            array[randId] = tmp;
+
+            array2[curId] = array2[randId];
+            array2[randId] = tmp;
+          }
+          return {"a":array,"b":array2};
+        }
 
         function printdiv(elem)
         {
@@ -182,15 +200,8 @@
             origin2.value = preDo[preT.value]["kor"];
             re();
         }
-
-        function re(){
-            yourIn.innerHTML = "";
-
-            origin = document.getElementById('origin');
-            origin2 = document.getElementById('origin2');
-            originText = origin.value.split('\n');
-            originText2 = origin2.value.split('\n');
-
+        
+        function makeInHtml(){
             for(let i = 0; i < Math.max(originText.length , originText2.length); i++){
                 let korean = originText2[i];
                 let newInput = document.createElement("input");
@@ -212,6 +223,21 @@
                 yourIn.append(p);
                 yourIn.append(p2);
             }
+        }
+
+        function re(){
+            yourIn.innerHTML = "";
+
+            origin = document.getElementById('origin');
+            origin2 = document.getElementById('origin2');
+            originText = origin.value.split('\n');
+            originText2 = origin2.value.split('\n');
+
+            let suf = shuffleArray(originText , originText2);
+            originText = suf["a"];
+            originText2 = suf["b"];
+
+            makeInHtml();
         }
 
         function check(){
