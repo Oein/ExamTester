@@ -102,6 +102,7 @@
     <button onclick="for(let i = 0;i < originText.length;i++){document.getElementById('right' + i.toString()).innerText = ''}">정답 가리기</button>
     <button onclick="for(let i = 0;i < originText.length;i++){document.getElementById('right' + i.toString()).innerText = 'Ans : ' + originText[i]}">정답 보이기</button>
     <button onclick="printdiv('yourIn')">프린트</button>
+    <button onclick="randC()" id="Shuffle">섞기 비활성화</button>
     <button onclick="check()">체점</button>
     <p></p>
     <select id="preT" onchange="preC()">
@@ -120,6 +121,14 @@
         let preT = document.getElementById('preT');
         let originText = [];
         let originText2 = [];
+        let suf = document.getElementById('Shuffle');
+        let sufIt = true;
+
+        function randC(){
+            sufIt = !sufIt;
+            if(sufIt) suf.innerText = '섞기 활성화';
+            else suf.innerText = '섞기 비활성화';
+        }
 
         function shuffleArray(array , array2) {
           let curId = array.length;
@@ -236,9 +245,11 @@
             originText = origin.value.split('\n');
             originText2 = origin2.value.split('\n');
 
-            let suf = shuffleArray(originText , originText2);
-            originText = suf["a"];
-            originText2 = suf["b"];
+            if(sufIt){
+                let suf = shuffleArray(originText , originText2);
+                originText = suf["a"];
+                originText2 = suf["b"];
+            }
 
             makeInHtml();
         }
