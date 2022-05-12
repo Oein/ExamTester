@@ -100,6 +100,7 @@
     
     <button onclick="re()">사용자 입력을 적용</button>
     <button onclick="for(let i = 0;i < originText.length;i++){document.getElementById('right' + i.toString()).innerText = ''}">정답 가리기</button>
+    <button onclick="for(let i = 0;i < originText.length;i++){document.getElementById('right' + i.toString()).innerText = 'Ans : ' + originText[i]}">정답 보이기</button>
     <button onclick="printdiv('yourIn')">프린트</button>
     <button onclick="check()">체점</button>
     <p></p>
