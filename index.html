@@ -167,6 +167,8 @@
             const response = await fetch(url1);
             const data = await response.text();
 
+            console.log(data);
+
             preDoX = JSON.parse(data);
             preT.innerHTML = "";
 
