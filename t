@@ -1,3 +1,3 @@
 git add *
-git commit -m "update testData"
+git commit -m "testData"
 git push
