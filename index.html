@@ -180,14 +180,10 @@
 
             console.log(data);
 
-            preDoX = JSON.parse(data);
+            preDo = JSON.parse(data);
             preT.innerHTML = "";
 
             const ordered = {};
-
-            Object.keys(preDoX).sort().forEach(function(key) {
-                preDo[key] = preDoX[key];
-            });
 
             let optionGroups = {};
             Object.keys(preDo).forEach(function(key){
